@@ -47,12 +47,12 @@ size_t nb_onechild(const binary_tree_t *tree)
 	return (s);
 }
 /**
- * is_leaves_have_same_height - if all leaves have the same height
+ * ilhsh - is/leaves/have/same/height
  * @tree: tree
  * @ht: hight of tree
  * Return: the number of leaves
  */
-size_t is_leaves_have_same_height(const binary_tree_t *tree, size_t ht)
+size_t ilhsh(const binary_tree_t *tree, size_t ht)
 {
 	if (!tree)
 		return (1);
@@ -61,12 +61,8 @@ size_t is_leaves_have_same_height(const binary_tree_t *tree, size_t ht)
 		if (depth(tree) != ht)
 			return (0);
 	}
-	if (!is_leaves_have_same_height(tree->left, ht))
+	if (!ilhsh(tree->left, ht) || !ilhsh(tree->right, ht))
 		return (0);
-
-	if (!is_leaves_have_same_height(tree->right, ht))
-		return (0);
-
 	return (1);
 }
 
@@ -77,11 +73,9 @@ size_t is_leaves_have_same_height(const binary_tree_t *tree, size_t ht)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t ht = height(tree);
-
 	if (!tree)
 		return (0);
-	if (nb_onechild(tree) == 0 && is_leaves_have_same_height(tree, ht))
+	if (nb_onechild(tree) == 0 && ilhsh(tree, height(tree)))
 		return (1);
 	else
 		return (0);
