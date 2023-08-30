@@ -54,10 +54,10 @@ pr(tree->right, h, func);
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-		if (!tree || !func)
-		return;
 	size_t i, h = height(tree);
 
+	if (!tree || !func)
+		return;
 	for (i = 0; i < h + 1; i++)
 		pr(tree, i, func);
 }
