@@ -22,14 +22,12 @@ size_t depth(const binary_tree_t *tree)
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	const binary_tree_t *second)
 {
-	const binary_tree_t *small, *big;
+	const binary_tree_t *small, *big, *j;
 
 	if (!first || !second)
 		return (NULL);
 	small = (depth(first) > depth(second)) ? second : first;
 	big = (depth(first) > depth(second)) ? first : second;
-	const binary_tree_t *j = big;
-
 	while (small)
 	{
 		j = big;
